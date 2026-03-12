@@ -143,14 +143,20 @@ Value: (이미지 파일)
 ## 📸 API 테스트 결과
 
 ### ✅ POST /api/members - 멤버 저장 성공
-> Postman에서 멤버 저장 테스트 → 200 OK
+
+![POST 멤버 저장 성공](여기에_URL_붙여넣기)
+
+---
 
 ### ✅ GET /api/members/1 - 멤버 조회 성공
-> Postman에서 멤버 조회 테스트 → 200 OK
+
+![GET 멤버 조회 성공](여기에_URL_붙여넣기)
+
+---
 
 ### ✅ S3 이미지 업로드 성공
-> S3 업로드 후 브라우저에서 이미지 접근 성공
-> `https://bogum-s3.s3.ap-northeast-2.amazonaws.com/{fileName}`
+
+![Image](https://github.com/user-attachments/assets/e6a5ff63-ed07-40c8-8801-568353c4952c)
 
 ---
 
