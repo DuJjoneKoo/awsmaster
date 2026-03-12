@@ -8,3 +8,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+
+cloud:
+  aws:
+    s3:
+      bucket: bogum-s3
+    region:
+      static: ap-northeast-2

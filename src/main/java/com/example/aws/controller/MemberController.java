@@ -8,6 +8,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 // log 객체를 위해 Slf4j 어노테이션 추가함
 @Slf4j
@@ -26,5 +29,12 @@ public class MemberController {
     public MemberResponse findById(@PathVariable Long memberId) {
         log.info("[API - LOG] GET /api/members/{} 요청", memberId );
         return memberService.findById(memberId);
+    }
+    // 프로필 이미지 업로드 API
+    @PatchMapping("/{id}/profile-image")
+    public MemberResponse uploadProfileImage(
+            @PathVariable Long id,
+            @RequestParam("file") MultipartFile file) throws IOException {
+        return memberService.uploadProfileImage(id, file);
     }
 }

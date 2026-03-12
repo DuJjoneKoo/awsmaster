@@ -6,12 +6,15 @@ import com.example.aws.entity.Member;
 import com.example.aws.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Service
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
-
+    private final S3Service s3Service;
     public MemberResponse save(MemberRequest request) {
         //1. Builder로 Member 만들기
         Member member = Member.builder()
@@ -36,4 +39,20 @@ public class MemberService {
         return new MemberResponse(found.getId(), found.getName(), found.getAge(), found.getMbti());
     }
 
+
+    public MemberResponse uploadProfileImage(Long id, MultipartFile file) throws IOException {
+        // 1. 멤버 찾기
+        Member member = memberRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("멤버를 찾을 수 없어요!"));
+
+        // 2. S3에 파일 업로드하고 URL 받기
+        String imageUrl = s3Service.uploadFile(file);
+
+        // 3. 멤버에 프로필 이미지 URL 저장
+        member.updateProfileImage(imageUrl);
+        memberRepository.save(member);
+
+        // 4. 응답 반환
+        return new MemberResponse(member.getId(), member.getName(), member.getAge(), member.getMbti());
+    }
 }

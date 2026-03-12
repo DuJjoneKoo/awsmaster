@@ -21,4 +21,9 @@ public class Member {
     private String name;
     private int age;
     private String mbti;
+    private String profileImageUrl;
+    // 프로필 이미지 URL을 업데이트하는 메서드
+    public void updateProfileImage(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
+    }
 }
