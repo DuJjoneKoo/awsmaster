@@ -5,10 +5,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
+import software.amazon.awssdk.services.s3.presigner.S3Presigner;
+import software.amazon.awssdk.services.s3.presigner.model.GetObjectPresignRequest;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.UUID;
 
 @Service
@@ -35,7 +39,21 @@ public class S3Service {
                         .build(),
                 RequestBody.fromBytes(file.getBytes())); // 실제 파일 데이터
 
-        // 업로드된 파일의 URL을 반환함
-        return "https://" + bucket + ".s3.ap-northeast-2.amazonaws.com/" + fileName;
+        // 파일 key(이름)만 반환 (DB에 저장용)
+        return fileName;
+    }
+
+    // Presigned URL 생성 (유효기간 7일)
+    public String getPresignedUrl(String key) {
+        S3Presigner presigner = S3Presigner.builder()
+                .region(Region.AP_NORTHEAST_2)
+                .build();
+
+        GetObjectPresignRequest presignRequest = GetObjectPresignRequest.builder()
+                .signatureDuration(Duration.ofDays(7))
+                .getObjectRequest(r -> r.bucket(bucket).key(key))
+                .build();
+
+        return presigner.presignGetObject(presignRequest).url().toString();
     }
 }

@@ -55,4 +55,13 @@ public class MemberService {
         // 4. 응답 반환
         return new MemberResponse(member.getId(), member.getName(), member.getAge(), member.getMbti());
     }
+
+    public String getPresignedUrl(Long id) {
+        // 1. 멤버 찾기
+        Member member = memberRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("멤버를 찾을 수 없어요!"));
+
+        // 2. 저장된 파일 key로 Presigned URL 생성
+        return s3Service.getPresignedUrl(member.getProfileImageUrl());
+    }
 }

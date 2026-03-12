@@ -31,10 +31,16 @@ public class MemberController {
         return memberService.findById(memberId);
     }
     // 프로필 이미지 업로드 API
-    @PatchMapping("/{id}/profile-image")
+    @PostMapping("/{id}/profile-image")
     public MemberResponse uploadProfileImage(
             @PathVariable Long id,
             @RequestParam("file") MultipartFile file) throws IOException {
         return memberService.uploadProfileImage(id, file);
+    }
+
+    // 프로필 이미지 Presigned URL 조회 API
+    @GetMapping("/{id}/profile-image")
+    public String getProfileImage(@PathVariable Long id) {
+        return memberService.getPresignedUrl(id);
     }
 }
