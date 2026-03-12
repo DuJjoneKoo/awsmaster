@@ -1,5 +1,3 @@
-# awsmaster
-
 # ☁️ Spring Boot + AWS 클라우드 아키텍처 설계 & 배포
 
 > Spring Boot 애플리케이션을 AWS 인프라 위에 직접 설계하고 배포한 프로젝트예요!
