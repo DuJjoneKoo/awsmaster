@@ -31,7 +31,7 @@ public class S3Service {
         // 예시: "550e8400-uuid_정민교.jpg"
         String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
 
-        // S3에 파일을 업로드해요
+        // S3에 파일을 업로드함
         s3Client.putObject(PutObjectRequest.builder()
                         .bucket(bucket)       // 어떤 버킷에 저장할지
                         .key(fileName)        // 파일 이름 (경로)

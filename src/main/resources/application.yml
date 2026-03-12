@@ -1,6 +1,10 @@
 spring:
   profiles:
     active: local
+  servlet:
+    multipart:
+      max-file-size: 80MB
+      max-request-size: 80MB
 
 management:
   endpoints:
