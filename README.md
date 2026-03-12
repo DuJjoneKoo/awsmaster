@@ -1,7 +1,5 @@
 # awsmaster
-LEVEL 0
-![예산결제](https://github.com/user-attachments/assets/02c57cae-1843-4ef6-9175-d1b77496abcb)
-13.125.97.116 퍼블릭IP
+
 # ☁️ Spring Boot + AWS 클라우드 아키텍처 설계 & 배포
 
 > Spring Boot 애플리케이션을 AWS 인프라 위에 직접 설계하고 배포한 프로젝트예요!
@@ -97,7 +95,9 @@ src/main/resources/
 ├── application-local.yml         # 로컬 환경 (H2 인메모리 DB)
 └── application-prod.yml          # 운영 환경 (RDS + Parameter Store)
 ```
-
+LEVEL 0
+![예산결제](https://github.com/user-attachments/assets/02c57cae-1843-4ef6-9175-d1b77496abcb)
+13.125.97.116 퍼블릭IP
 ---
 
 ## 🌐 API 명세
@@ -144,13 +144,13 @@ Value: (이미지 파일)
 
 ### ✅ POST /api/members - 멤버 저장 성공
 
-![POST 멤버 저장 성공](여기에_URL_붙여넣기)
+![Image](https://github.com/user-attachments/assets/69a535f0-40b8-4522-9276-62caebe24eeb)
 
 ---
 
 ### ✅ GET /api/members/1 - 멤버 조회 성공
 
-![GET 멤버 조회 성공](여기에_URL_붙여넣기)
+![Image](https://github.com/user-attachments/assets/6a7a1cf9-ee43-40c1-abc0-3f2d41ed0b27)
 
 ---
 
